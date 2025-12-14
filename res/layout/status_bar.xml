@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+**
+** Copyright 2006, The Android Open Source Project
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+
+<!--    android:background="@drawable/status_bar_closed_default_background" -->
+
+<com.android.systemui.statusbar.phone.PhoneStatusBarView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:systemui="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/status_bar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/status_bar_height"
+    android:background="@android:color/white"
+    android:orientation="horizontal"
+    android:focusable="false"
+    android:descendantFocusability="afterDescendants">
+
+    <!-- 左側區域：時間 + 藍牙 + WiFi -->
+    <LinearLayout
+        android:id="@+id/status_bar_left_side"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="start|center_vertical"
+        android:paddingStart="16dp">
+
+        <!-- 時鐘 -->
+        <com.android.systemui.statusbar.policy.Clock
+            android:id="@+id/clock"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|start"
+            android:textColor="#FF000000"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            android:singleLine="true"
+            android:paddingEnd="12dp"
+            systemui:showDark="false"/>
+
+        <!-- 藍牙圖標 -->
+        <ImageView
+            android:id="@+id/bluetooth_icon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_bluetooth_connected"
+            android:tint="#FF000000"
+            android:scaleType="centerInside"
+            android:visibility="gone"/>
+
+        <!-- WiFi 圖標 -->
+        <ImageView
+            android:id="@+id/wifi_icon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_qs_wifi_4"
+            android:tint="#FF000000"
+            android:scaleType="centerInside"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <!-- 中間留白 -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+    <!-- 右側區域：亮度 + 更多 + 電池 -->
+    <LinearLayout
+        android:id="@+id/status_bar_right_side"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:gravity="end|center_vertical"
+        android:paddingEnd="16dp">
+
+        <!-- 亮度圖標 -->
+        <ImageView
+            android:id="@+id/brightness_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_brightness_full"
+            android:tint="#FF000000"
+            android:scaleType="centerInside"
+            android:padding="2dp"/>
+
+        <!-- 更多選項（三個點） -->
+        <ImageView
+            android:id="@+id/more_options_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/ic_more_vert"
+            android:tint="#FF000000"
+            android:scaleType="centerInside"
+            android:padding="2dp"/>
+
+        <!-- 電池圖標和百分比容器 -->
+        <LinearLayout
+            android:id="@+id/battery_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- 電池圖標 -->
+            <com.android.systemui.BatteryMeterView
+                android:id="@+id/battery"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_marginEnd="4dp"
+                systemui:textAppearance="@style/TextAppearance.StatusBar.Clock"/>
+
+            <!-- 電量百分比 -->
+            <TextView
+                android:id="@+id/battery_level"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:textColor="#FF000000"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                android:singleLine="true"
+                android:text="100%"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.android.systemui.statusbar.phone.PhoneStatusBarView>
